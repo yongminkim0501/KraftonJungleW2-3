@@ -34,12 +34,33 @@ def gcd(a, b):
     Returns:
         최대공약수
     """
+    if b > a:
+        a, b = b,a
+
+    if a % b == 0 : return b
+
+    else :
+        r_1 = a % b
+        return gcd(b, r_1)
+
+
+
+
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
-    # recursive를 이용 
+    # recursive를 이용
+
     pass
 
 def gcd_iterative(a, b):
+    count = min(a,b)
+    while (True):
+        if a % count == 0 and b % count == 0:
+            return count
+        else:
+            count -= 1
+
+
     """
     반복문을 사용한 최대공약수 계산
     
@@ -54,6 +75,13 @@ def gcd_iterative(a, b):
     pass
 
 def lcm(a, b):
+    if b > a : a,b = b,a
+    if a % b == 0 : return a
+    count = a // b
+    while True:
+        if (b * count) % a == 0:
+            return b*count
+        count += 1
     """
     최소공배수 계산
     
@@ -77,6 +105,15 @@ def extended_gcd(a, b):
     Returns:
         (gcd, x, y) 튜플
     """
+    if b == 0 : return a,1,0
+
+    gcd, x, y = extended_gcd(b, a%b)
+
+    return gcd, y, x-(a//b)*y
+
+
+
+    return
     # TODO: 확장 유클리드 호제법 구현
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
@@ -93,6 +130,34 @@ def is_prime(n):
     Returns:
         소수이면 True, 아니면 False
     """
+    # 에라토스테네스의 체
+    # 1~n까지 수 나열
+    arr = [i for i in range(2, n)]
+    for i in range(2, n):
+        for j in range(i, n // i + 1):
+            if i * j in arr:
+                arr.remove(i * j)
+    for item in arr:
+        if n % item == 0:
+            return False
+    return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # TODO: 소수 판별 구현
     # n이 2보다 작으면 False
     # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    

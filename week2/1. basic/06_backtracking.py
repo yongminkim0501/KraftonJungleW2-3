@@ -174,7 +174,7 @@ def combinations(n: int, k: int) -> list:
             # current_combination.pop()
             current_combination.append(num)
             backtrack(num+1, current_combination) # 이거를 반복문 처럼 생각해야함
-            current_combination.pop()
+            current_combination.pop() # 이 블록 단위로 봤을 때 current_combination에 append를 했기 때문에 pop
 
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])
