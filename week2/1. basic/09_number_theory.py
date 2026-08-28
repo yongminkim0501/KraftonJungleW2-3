@@ -112,8 +112,6 @@ def extended_gcd(a, b):
     return gcd, y, x-(a//b)*y
 
 
-
-    return
     # TODO: 확장 유클리드 호제법 구현
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
