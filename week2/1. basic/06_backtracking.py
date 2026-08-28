@@ -108,6 +108,8 @@ combinations(n, k) -> list[list[int]]
 """
 
 
+
+
 def combinations(n: int, k: int) -> list:
     """
     1 부터 n 까지 숫자 중 k 개를 선택하는 모든 조합을 반환합니다.
@@ -144,7 +146,10 @@ def combinations(n: int, k: int) -> list:
         # if len(current_combination) == ...:
         #     result.append(...)
         #     return
-        pass  
+        if len(current_combination) == k:
+            result.append(current_combination[:])
+            return
+        pass
 
         # ──────────────────────────────────────────────────────────────────
         # [Level 2] 가지치기 반복문
@@ -154,8 +159,7 @@ def combinations(n: int, k: int) -> list:
         # - 반복문 변수 이름은 num 으로 추천 (의미: "이번에 고를 숫자").
         #
         # TODO(Level 2): 아래 한 줄을 작성하세요.
-        pass
-
+        for num in range(start, n+1):
             # ──────────────────────────────────────────────────────────────
             # [Level 3] 백트래킹 3단계
             # ──────────────────────────────────────────────────────────────
@@ -168,6 +172,9 @@ def combinations(n: int, k: int) -> list:
             # current_combination.append(...)
             # backtrack(..., current_combination)
             # current_combination.pop()
+            current_combination.append(num)
+            backtrack(num+1, current_combination) # 이거를 반복문 처럼 생각해야함
+            current_combination.pop()
 
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])
