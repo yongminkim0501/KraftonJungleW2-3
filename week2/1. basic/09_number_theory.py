@@ -130,6 +130,7 @@ def is_prime(n):
     """
     # 에라토스테네스의 체
     # 1~n까지 수 나열
+
     arr = [i for i in range(2, n)]
     for i in range(2, n):
         for j in range(i, n // i + 1):

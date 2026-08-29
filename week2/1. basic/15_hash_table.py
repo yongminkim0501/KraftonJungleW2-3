@@ -40,6 +40,27 @@ def manage_grades(students):
     Returns:
         평균, 최고점 학생 이름, 최고점
     """
+    top_score = 0
+    m = 101
+    hash_table = [None] * m
+
+    names = list(students.keys())
+    score = list(students.values())
+    sum_score = 0
+    for idx in range(len(students)):
+        hash_name = hash(names[idx]) % m
+        hash_table[hash_name] = score[idx]
+
+        if top_score < score[idx]:
+            top_score = score[idx]
+            top_student = names[idx]
+
+    for name in names:
+        hash_name = hash(name)%m
+        sum_score += hash_table[hash_name]
+
+    average = sum_score / len(students)
+
     # TODO: 평균 점수 계산
     pass
     
@@ -60,6 +81,17 @@ def find_student_score(students, name):
     Returns:
         점수 (없으면 None)
     """
+    names = list(students.keys())
+    scores = list(students.values())
+    m = 101
+    hash_table = [None] * m
+
+    for idx in range(len(students)):
+        hash_name = hash(names[idx]) % m
+        hash_table[hash_name] = scores[idx]
+
+    return hash_table[hash(name) % m]
+
     # TODO: students에서 name 찾기
     pass
 
