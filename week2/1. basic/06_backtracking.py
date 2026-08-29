@@ -169,9 +169,6 @@ def combinations(n: int, k: int) -> list:
             #   3) 취소(Unchoose): current_combination 의 마지막 요소를 제거
             #
             # TODO(Level 3): 아래 세 줄을 작성하세요.
-            # current_combination.append(...)
-            # backtrack(..., current_combination)
-            # current_combination.pop()
             current_combination.append(num)
             backtrack(num+1, current_combination) # 이거를 반복문 처럼 생각해야함
             current_combination.pop() # 이 블록 단위로 봤을 때 current_combination에 append를 했기 때문에 pop

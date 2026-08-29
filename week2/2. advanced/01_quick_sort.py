@@ -34,33 +34,13 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
+    i = low-1
     pivot = arr[high]
-
-    lower = []
-    higher = []
-
-    for i in range(len(arr)-1):
-        if arr[i] > pivot:
-            lower.append(arr[i])
-        else:
-            higher.append(arr[i])
-
-    arr = lower + [pivot] + higher
-
-    if pivot == arr[higher]:
-        return arr
-
-    b = partition(arr[:pivot], low, pivot+1)
-    a = partition(arr[pivot:], pivot, high)
-
-    return b + a
-
-
-
-
-
-
-
+    for j in range(low, high):
+        if pivot >= arr[j]:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
 
 
 
@@ -94,6 +74,29 @@ def quick_sort_helper(arr, low, high):
         low: 시작 인덱스
         high: 끝 인덱스
     """
+
+    def partition_iter(arr, low, high):
+
+        if len(arr) <= 1: return arr
+
+        pivot = arr[high]
+
+        lower = []
+        higher = []
+
+        for i in range(len(arr) - 1):
+            if arr[i] > pivot:
+                higher.append(arr[i])
+            else:
+                lower.append(arr[i])
+
+        a = partition_iter(lower, 0, len(lower) - 1)
+        b = partition_iter(higher, 0, len(higher) - 1)
+
+        return a + [pivot] + b
+
+    result = partition_iter(arr, low, high)
+    return result
     # TODO: base case - low가 high보다 작을 때만 정렬
     ## 분할하여 피벗 인덱스 얻기
     ## 피벗 왼쪽 부분 재귀 정렬
@@ -111,7 +114,7 @@ def quick_sort(arr):
     Returns:
         정렬된 배열
     """
-    quick_sort_helper(arr, 0, len(arr) - 1)
+    arr[:] = quick_sort_helper(arr, 0, len(arr) - 1)
     return arr
 
 # 테스트 케이스
