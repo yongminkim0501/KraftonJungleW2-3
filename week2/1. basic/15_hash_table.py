@@ -60,7 +60,6 @@ def manage_grades(students):
         sum_score += hash_table[hash_name]
 
     average = sum_score / len(students)
-
     # TODO: 평균 점수 계산
     pass
     

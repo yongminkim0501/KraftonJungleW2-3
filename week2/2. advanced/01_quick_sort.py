@@ -25,15 +25,49 @@
 def partition(arr, low, high):
     """
     배열을 피벗 기준으로 분할하는 함수
-    
+
     Args:
         arr: 배열
         low: 시작 인덱스
         high: 끝 인덱스
-    
+
     Returns:
         피벗의 최종 위치 인덱스
     """
+    pivot = arr[high]
+
+    lower = []
+    higher = []
+
+    for i in range(len(arr)-1):
+        if arr[i] > pivot:
+            lower.append(arr[i])
+        else:
+            higher.append(arr[i])
+
+    arr = lower + [pivot] + higher
+
+    if pivot == arr[higher]:
+        return arr
+
+    b = partition(arr[:pivot], low, pivot+1)
+    a = partition(arr[pivot:], pivot, high)
+
+    return b + a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
     pass
     
