@@ -36,20 +36,26 @@ def process_emergency_room(patients):
     Returns:
         처리된 환자 순서
     """
-    # TODO: 빈 힙 생성
+    m = 101
+    hash_table = [""] * m
     heap = []
-    
-    
-    # TODO: 모든 환자를 힙에 추가
-    pass
-        
+
+    for patient in patients:
+        name = patient[0]
+        num = patient[1]
+
+        hashed_num = hash(num) % m
+        hash_table[hashed_num] = name
+        heapq.heappush(heap, num)
+
     processed = []
-    
-    # TODO: 힙이 비어있지 않은 동안 반복
-    ## 힙에서 우선순위가 가장 높은 환자 꺼내기
-    ## 환자 처리
-    pass
-        
+    while heap:
+        num = heapq.heappop(heap)
+        hashed_num = hash(num)
+        name = hash_table[hashed_num]
+        processed.append(name)
+        print(f"처리: {name} (우선순위: {num})")
+
     return processed
 
 # 테스트 케이스
