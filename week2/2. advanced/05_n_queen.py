@@ -60,16 +60,24 @@ def n_queens(n: int) -> int:
     N x N 체스판에 N 개의 퀸을 서로 공격하지 않도록 배치하는 경우의 수를 반환.
     1 <= N <= 8 범위에서 동작하면 충분합니다.
     """
-    # TODO: 백트래킹으로 가능한 배치의 수를 반환하세요.
-    # 권장 구조:
-    #   cols = [0] * n
-    #   count = 0
-    #   def place(row):
-    #       ...
-    #   place(0)
-    #   return count
-    pass
+    cols = [0 for _ in range(n)]
+    def is_check(row, c):
+        for i in range(row):
+            if cols[i] == c or abs(cols[i] - c) == row - i:
+                return False
+        return True # 여기는 그대로 구현
 
+    def queen_iter(row):
+        if row == n:
+            return 1
+        count = 0
+        for c in range(n):
+            if is_check(row, c):
+                cols[row] = c
+                count += queen_iter(row + 1)
+        return count
+
+    return queen_iter(0)
 
 if __name__ == "__main__":
     print("[테스트] N=1 ~ N=8 에 대한 가능한 배치의 수")
