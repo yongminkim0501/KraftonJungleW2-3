@@ -108,7 +108,7 @@ def merge_sort_helper(arr, left, right):
     return arr
 
     # TODO: base case - left가 right보다 작을 때만 정렬
-    ## 중간 지점 계산
+    ## 중간 지점 계산 .
     ## 왼쪽 절반 재귀 정렬
     ## 오른쪽 절반 재귀 정렬
     ## 정렬된 두 절반을 병합

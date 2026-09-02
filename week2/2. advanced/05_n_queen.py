@@ -61,6 +61,7 @@ def n_queens(n: int) -> int:
     1 <= N <= 8 범위에서 동작하면 충분합니다.
     """
     cols = [0 for _ in range(n)]
+
     def is_check(row, c):
         for i in range(row):
             if cols[i] == c or abs(cols[i] - c) == row - i:

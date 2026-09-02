@@ -75,22 +75,20 @@ def hanoi_moves(n: int) -> list:
     """
     # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
-    brr = []
+    arr = []
     if n > 20 or n == 0 : return []
-    def hanoi_iter(arr, n, start, move, end):
+
+    def hanoi_iter(n, start, move, end):
         if n == 1:
             arr.append((start, end))
-            return arr
-        hanoi_iter(arr, n - 1, start, end, move)
-        #arr.append((temp[0][0], temp[0][1]))
-        hanoi_iter(arr, 1, start, move, end)
-        #arr.append((temp[0][0], temp[0][1]))
-        hanoi_iter(arr, n - 1, move, start, end)
-        #arr.append((temp[0][0], temp[0][1]))
-        return arr
+            return
+        hanoi_iter(n - 1, start, end, move)
+        hanoi_iter(1, start, move, end)
+        hanoi_iter(n - 1, move, start, end)
+        return
 
-    result = hanoi_iter(brr, n, 1, 2, 3)
-    return result
+    hanoi_iter(n, 1, 2, 3)
+    return arr
 
 
     pass

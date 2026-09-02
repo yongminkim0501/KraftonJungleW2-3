@@ -42,7 +42,9 @@ def binary_search(arr, target):
     left = 0
     right = len(arr) - 1
     mid = right // 2
+
     count = 0
+
     while True:
         count += 1
         if count == len(arr): break
@@ -52,7 +54,6 @@ def binary_search(arr, target):
             mid = (left + mid) // 2
         else:
             mid = (right + mid) // 2
-
     pass
     
     return -1
