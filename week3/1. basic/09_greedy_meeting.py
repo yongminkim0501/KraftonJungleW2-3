@@ -22,32 +22,31 @@
 - 이전 회의가 끝난 후에 시작하는 회의만 선택
 """
 
+
 def select_meetings(meetings):
     """
     회의실 배정 (그리디)
-    
+
     Args:
         meetings: [(시작, 종료)] 리스트
-    
+
     Returns:
         (배정된 회의 개수, 선택된 회의 리스트)
     """
-    # TODO: 회의가 없으면 0 반환
-    pass
-    
-    # TODO: 종료 시간 기준으로 정렬
-    pass
-    
-    selected = []
-    
-    # TODO: 첫 번째 회의 선택
-    pass
-    
-    # TODO: 나머지 회의들 확인
-    ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    pass
-    
-    return len(selected), selected
+    result = []
+
+    def check_meet(start, end):
+        if len(result) == 0:
+            result.append((start, end))
+        else:
+            if result[-1][1] <= start:
+                result.append((start, end))
+
+    asc = sorted(meetings, key=lambda x: x[1], reverse=False)
+    for meet in asc:
+        check_meet(meet[0], meet[1])
+
+    return len(result), result
 
 # 테스트 케이스
 if __name__ == "__main__":
