@@ -51,12 +51,6 @@ def create_graph(vertices, edges, directed=False):
             graph[edge[1]] = []
 
     def add(start, end):
-        '''
-      if start in graph :
-        graph[start].append(end)
-      else:
-        graph[start] = [end]
-        '''
         graph[start].append(end)
 
     if directed:
