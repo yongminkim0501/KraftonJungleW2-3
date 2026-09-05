@@ -28,34 +28,21 @@
 
 from collections import deque
 
+
 def topological_sort(vertices, edges):
-    """
-    위상 정렬 (Kahn's Algorithm)
-    
-    Args:
-        vertices: 정점 개수
-        edges: (출발, 도착) 간선 리스트
-    
-    Returns:
-        위상 정렬 순서
-    """
-    # TODO: 그래프와 진입 차수 초기화
-    pass
-    
-    # TODO: 그래프 구성 및 진입 차수 계산
-    pass
-    
-    # TODO: 진입 차수가 0인 정점들을 큐에 추가
-    pass
-    
-    result = []
-    
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들의 진입 차수 감소
-    pass
-    
-    return result
+    arr = [0 for _ in range(vertices)]
+    result = deque()
+    for edge in edges:
+        arr[edge[1]] += 1
+
+    for idx in range(len(edges)):
+        if edges[idx][0] not in result:
+            result.append(edges[idx][0])
+        arr[edges[idx][1]] -= 1
+        if arr[edges[idx][1]] == 0:
+            result.append(edges[idx][1])
+
+    return list(result)
 
 # 테스트 케이스
 if __name__ == "__main__":

@@ -41,8 +41,6 @@ class TreeNode:
 
 
 result = []
-
-
 def preorder(root):
     # 요구조건 : root -> 왼쪽 -> 오른쪽
     if root is None:
